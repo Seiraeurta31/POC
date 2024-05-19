@@ -82,9 +82,9 @@ export default function Home() {
           </form> 
             <button onClick={clearAddress}> Clear Map</button>
 
-          {/* <p>{street}</p>
+          <p>{street}</p>
           <p>{city}</p>
-          <p>{state}</p> */}
+          <p>{state}</p>
 
           {(street && city && state)?
             <LocationMap
