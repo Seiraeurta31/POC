@@ -3,6 +3,7 @@ import { useState, useRef } from "react";
 import styles from '../styles/Home.module.css'
 import { useRouter } from "next/router";
 
+
 export default function Home() {
   const router = useRouter();
 
@@ -40,6 +41,7 @@ export default function Home() {
       ...{ [e.target.name]: e.target.value },
       addressEntered: true,
     }); 
+
     return router.push("/");
     
   }
@@ -88,14 +90,18 @@ export default function Home() {
             />
             <button>Submit</button>
           </form> 
-            <button onClick={clearAddress}> Clear Map</button>
+            
 
 
           {addressEntered?
               
            <div className={styles.mapContainer}>
+
+            <button onClick={clearAddress}> Clear Map</button>
+            
             <p>{street}</p>
             <p>{city}, {state}</p>
+            
 
             <LocationMap
               street={street}
@@ -128,7 +134,7 @@ function LocationMap({street, city, state}){
       loading="lazy"
       allowfullscreen
       referrerpolicy="no-referrer-when-downgrade"
-      src={`https://www.google.com/maps/embed/v1/place?key=${process.env.API_KEY}&q=${street}+${city}+${state}`}>
+      src={`https://www.google.com/maps/embed/v1/place?key=${process.env.REACT_APP_API_KEY}&q=${street}+${city}+${state}`}>
     </iframe>
   )
 
