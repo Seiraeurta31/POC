@@ -57,6 +57,10 @@ export default function Home() {
       <main >
         <div className={styles.container}>
 
+        <p className={styles.projectTitle}>POC for Interactive Map</p>
+        <p className={styles.byLine}>Developed by Ashley Frank</p>
+        <a href="https://developers.google.com/maps/documentation/embed/embedding-map" className={styles.citation}>Testing Google API</a>
+
          <form 
             onSubmit={handleSubmit}
             className={styles.form}

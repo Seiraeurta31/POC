@@ -14,6 +14,23 @@
     margin-top: 30px;
 }
 
+.projectTitle {
+    font-size: 40px;
+    margin: 0;
+}
+
+.byLine {
+    font-size: 25px;
+    font-style: italic;
+}
+
+
+.citation {
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+
+
 .form {
     display: flex;
     flex-direction: column;
