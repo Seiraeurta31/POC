@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 
 export default function Home() {
   const router = useRouter();
+  
   const [{ street, city, state}, setForm,] = useState({
     street: "",
     city: "",
@@ -18,6 +19,15 @@ export default function Home() {
       state,
       ...{ [e.target.name]: e.target.value },
     });
+  }
+
+  function clearAddress(e) {
+    setForm({
+      street: "",
+      city: "",
+      state: "" ,
+    });
+    return router.push("/");
   }
 
   function handleSubmit(e) {
@@ -36,15 +46,6 @@ export default function Home() {
       </Head>
       <main >
         <div className={styles.container}>
-
-        {/* <iframe
-          width="300"
-          height="300"
-          loading="lazy"
-          allowfullscreen
-          referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAbAZWYnF1JXpfzaGkIhfpA83jIDqEbOIY&q=11145+coldfield+dr,jacksonville+fl">
-        </iframe> */}
 
          <form 
             onSubmit={handleSubmit}
@@ -79,6 +80,7 @@ export default function Home() {
             />
             <button>Submit</button>
           </form> 
+            <button onClick={clearAddress}> Clear Map</button>
 
           {/* <p>{street}</p>
           <p>{city}</p>
