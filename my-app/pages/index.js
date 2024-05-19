@@ -5,11 +5,12 @@ import { useRouter } from "next/router";
 
 export default function Home() {
   const router = useRouter();
-  
-  const [{ street, city, state}, setForm,] = useState({
+
+  const [{ street, city, state, addressEntered}, setForm,] = useState({
     street: "",
     city: "",
     state: "",
+    addressEntered: false,
   })
 
   function handleChange(e) {
@@ -32,6 +33,13 @@ export default function Home() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    setForm({
+      street,
+      city,
+      state,
+      ...{ [e.target.name]: e.target.value },
+      addressEntered: true,
+    }); 
     return router.push("/");
     
   }
@@ -82,16 +90,20 @@ export default function Home() {
           </form> 
             <button onClick={clearAddress}> Clear Map</button>
 
-          <p>{street}</p>
-          <p>{city}</p>
-          <p>{state}</p>
 
-          {(street && city && state)?
+          {addressEntered?
+              
+           <div className={styles.mapContainer}>
+            <p>{street}</p>
+            <p>{city}, {state}</p>
+
             <LocationMap
               street={street}
               city={city} 
               state={state}>
             </LocationMap>
+
+           </div> 
           : <p>Enter Address to see it on the map!</p>
           }
         
@@ -108,13 +120,15 @@ function LocationMap({street, city, state}){
   console.log("state Variable:", state)
 
   return(
+
+
     <iframe
       width="300"
       height="300"
       loading="lazy"
       allowfullscreen
       referrerpolicy="no-referrer-when-downgrade"
-      src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyAbAZWYnF1JXpfzaGkIhfpA83jIDqEbOIY&q=${street}+${city}+${state}`}>
+      src={`https://www.google.com/maps/embed/v1/place?key=${process.env.REACT_APP_API_KEY}&q=${street}+${city}+${state}`}>
     </iframe>
   )
 
