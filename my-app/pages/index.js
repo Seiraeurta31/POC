@@ -1,9 +1,31 @@
 import Head from "next/head";
-import styles from "@/styles/Home.module.css";
-
-
+import { useState, useRef } from "react";
+import styles from '../styles/Home.module.css'
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const router = useRouter();
+  const [{ street, city, state}, setForm,] = useState({
+    street: "",
+    city: "",
+    state: "",
+  })
+
+  function handleChange(e) {
+    setForm({
+      street,
+      city,
+      state,
+      ...{ [e.target.name]: e.target.value },
+    });
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    return router.push("/");
+    
+  }
+
   return (
     <>
       <Head>
@@ -13,11 +35,85 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main >
-        <div>
-          <p> Hello</p>
-          
+        <div className={styles.container}>
+
+        {/* <iframe
+          width="300"
+          height="300"
+          loading="lazy"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAbAZWYnF1JXpfzaGkIhfpA83jIDqEbOIY&q=11145+coldfield+dr,jacksonville+fl">
+        </iframe> */}
+
+         <form 
+            onSubmit={handleSubmit}
+            className={styles.form}
+          >
+            <label htmlFor="street" className={styles.label}>Street Address</label>
+            <input
+              type="text"
+              name="street"
+              id="street"
+              value={street}
+              onChange={handleChange}
+              className={styles.inputField}
+            />
+            <label htmlFor="city" className={styles.label}>Cityr</label>
+            <input
+              type="text"
+              name="city"
+              id="city"
+              value={city}
+              onChange={handleChange}
+              className={styles.inputField}
+            />
+            <label htmlFor="state" className={styles.label}>State</label>
+            <input
+              type="text"
+              name="state"
+              id="state"
+              value={state}
+              onChange={handleChange}
+              className={styles.inputField}
+            />
+            <button>Submit</button>
+          </form> 
+
+          {/* <p>{street}</p>
+          <p>{city}</p>
+          <p>{state}</p> */}
+
+          {(street && city && state)?
+            <LocationMap
+              street={street}
+              city={city} 
+              state={state}>
+            </LocationMap>
+          : <p>Enter Address to see it on the map!</p>
+          }
+        
         </div>
       </main>
     </>
   );
+}
+
+function LocationMap({street, city, state}){
+
+  console.log("Street Variable:", street)
+  console.log("city Variable:", city)
+  console.log("state Variable:", state)
+
+  return(
+    <iframe
+      width="300"
+      height="300"
+      loading="lazy"
+      allowfullscreen
+      referrerpolicy="no-referrer-when-downgrade"
+      src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyAbAZWYnF1JXpfzaGkIhfpA83jIDqEbOIY&q=${street}+${city}+${state}`}>
+    </iframe>
+  )
+
 }

@@ -1,0 +1,30 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    margin-top: 30px;
+}
+
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(31, 31, 31);
+    padding: 20px;
+    width: 400px;
+    padding-top: 80px;
+    border-radius: 15px;
+}
+
+
+.inputField {
+    width: 200px;
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+.label{
+    color: white;
+}
