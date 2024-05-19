@@ -70,7 +70,7 @@ export default function Home() {
               onChange={handleChange}
               className={styles.inputField}
             />
-            <label htmlFor="city" className={styles.label}>Cityr</label>
+            <label htmlFor="city" className={styles.label}>City</label>
             <input
               type="text"
               name="city"
@@ -99,8 +99,7 @@ export default function Home() {
 
             <button onClick={clearAddress}> Clear Map</button>
             
-            <p>{street}</p>
-            <p>{city}, {state}</p>
+            <p>{street}, {city}, {state} </p>
             
 
             <LocationMap
@@ -121,20 +120,16 @@ export default function Home() {
 
 function LocationMap({street, city, state}){
 
-  console.log("Street Variable:", street)
-  console.log("city Variable:", city)
-  console.log("state Variable:", state)
 
   return(
 
-
     <iframe
-      width="300"
-      height="300"
+      width="500"
+      height="500"
       loading="lazy"
       allowfullscreen
       referrerpolicy="no-referrer-when-downgrade"
-      src={`https://www.google.com/maps/embed/v1/place?key=${process.env.API_KEY}&q=${street}+${city}+${state}`}>
+      src={`https://www.google.com/maps/embed/v1/place?key=${process.env.NEXT_PUBLIC_API_KEY}&q=${street}+${city}+${state}`}>
     </iframe>
   )
 
