@@ -134,7 +134,7 @@ function LocationMap({street, city, state}){
       loading="lazy"
       allowfullscreen
       referrerpolicy="no-referrer-when-downgrade"
-      src={`https://www.google.com/maps/embed/v1/place?key=${process.env.REACT_APP_API_KEY}&q=${street}+${city}+${state}`}>
+      src={`https://www.google.com/maps/embed/v1/place?key=${process.env.API_KEY}&q=${street}+${city}+${state}`}>
     </iframe>
   )
 
